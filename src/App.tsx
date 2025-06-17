@@ -18,6 +18,9 @@ const App: React.FC = () => {
         isLoading={isLoading}
         error={error ? getErrorMessage(error) : null}
       />
+      <footer className="mt-8 text-center text-sm text-gray-500">
+        <p>Made by <a href="https://github.com/guesung" target="_blank" rel="noopener noreferrer" className="hover:underline">guesung</a></p>
+      </footer>
     </div>
   );
 };
