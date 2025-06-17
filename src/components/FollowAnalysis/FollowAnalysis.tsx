@@ -37,8 +37,8 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
           <div className="text-sm text-gray-500">ID: {user.id}</div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div>
+      <div className="flex flex-row gap-4 flex-wrap">
+        <div className="min-w-[260px] flex-1">
           <div className="font-semibold mb-2">팔로워 ({followers.length})</div>
           <ul className="max-h-[480px] overflow-auto border rounded p-2 bg-white">
             {followers.length === 0 ? (
@@ -52,6 +52,21 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
               ))
             )}
           </ul>
+          <div className="mt-4">
+            <div className="font-semibold mb-2 text-blue-600">팔로워이지만 내가 팔로우하지 않은 사람 ({onlyFollowers.length})</div>
+            <ul className="max-h-40 overflow-auto border rounded p-2 bg-blue-50">
+              {onlyFollowers.length === 0 ? (
+                <li className="text-gray-400">없음</li>
+              ) : (
+                onlyFollowers.map((f) => (
+                  <li key={f.login} className="flex items-center gap-2 py-1">
+                    <img src={f.avatar_url} alt={f.login} className="w-6 h-6 rounded-full" />
+                    <a href={f.html_url} target="_blank" rel="noopener noreferrer" className="hover:underline">{f.login}</a>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
         </div>
         <div>
           <div className="font-semibold mb-2">팔로잉 ({following.length})</div>
@@ -67,6 +82,21 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
               ))
             )}
           </ul>
+          <div className="mt-4">
+            <div className="font-semibold mb-2 text-red-600">내가 팔로우하지만 나를 팔로우하지 않은 사람 ({onlyFollowing.length})</div>
+            <ul className="max-h-40 overflow-auto border rounded p-2 bg-red-50">
+              {onlyFollowing.length === 0 ? (
+                <li className="text-gray-400">없음</li>
+              ) : (
+                onlyFollowing.map((f) => (
+                  <li key={f.login} className="flex items-center gap-2 py-1">
+                    <img src={f.avatar_url} alt={f.login} className="w-6 h-6 rounded-full" />
+                    <a href={f.html_url} target="_blank" rel="noopener noreferrer" className="hover:underline">{f.login}</a>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
