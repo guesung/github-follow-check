@@ -16,7 +16,7 @@ const UserSearch: React.FC<UserSearchProps> = ({ onSearch, isLoading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 items-center">
+    <form onSubmit={handleSubmit} className="flex gap-2 items-center justify-center">
       <input
         type="text"
         placeholder="GitHub 사용자명 입력"

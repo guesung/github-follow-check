@@ -8,8 +8,8 @@ const App: React.FC = () => {
   const { user, followers, following, isLoading, error, analyzeUser } = useGitHubFollowAnalysis();
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">GitHub Follow Check</h1>
+    <div className="mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6 text-center cursor-pointer" onClick={() => window.location.reload()}>GitHub Follow Check</h1>
       <UserSearch onSearch={analyzeUser} isLoading={isLoading} />
       <FollowAnalysis
         user={user}
