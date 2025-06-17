@@ -14,7 +14,11 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
     return <div className="py-8 text-center">로딩 중...</div>;
   }
   if (error) {
-    return <div className="py-8 text-center text-red-500">{error}</div>;
+    return <div className="py-8 text-center text-red-500">
+      <p>{error}</p>
+      <p>과도한 요청 시 에러가 발생할 수 있습니다.</p>
+      <p>잠시 후 다시 시도해주세요.</p>
+    </div>;
   }
   if (!user) {
     return <div className="py-8 text-center text-gray-400">사용자를 검색해 주세요.</div>;
