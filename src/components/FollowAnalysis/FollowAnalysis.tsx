@@ -19,6 +19,15 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
   if (!user) {
     return <div className="py-8 text-center text-gray-400">사용자를 검색해 주세요.</div>;
   }
+  // 팔로잉에 있는데 팔로워에 없는 사람
+  const onlyFollowing = following.filter(
+    (f) => !followers.some((fw) => fw.login === f.login)
+  );
+  // 팔로워에 있는데 팔로잉에 없는 사람
+  const onlyFollowers = followers.filter(
+    (fw) => !following.some((f) => f.login === fw.login)
+  );
+
   return (
     <div className="mt-6">
       <div className="flex items-center gap-4 mb-4">
@@ -31,7 +40,7 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
       <div className="grid grid-cols-2 gap-4">
         <div>
           <div className="font-semibold mb-2">팔로워 ({followers.length})</div>
-          <ul className="max-h-48 overflow-auto border rounded p-2 bg-white">
+          <ul className="max-h-[480px] overflow-auto border rounded p-2 bg-white">
             {followers.length === 0 ? (
               <li className="text-gray-400">팔로워 없음</li>
             ) : (
@@ -46,7 +55,7 @@ const FollowAnalysis: React.FC<FollowAnalysisProps> = ({ user, followers, follow
         </div>
         <div>
           <div className="font-semibold mb-2">팔로잉 ({following.length})</div>
-          <ul className="max-h-48 overflow-auto border rounded p-2 bg-white">
+          <ul className="max-h-[480px] overflow-auto border rounded p-2 bg-white">
             {following.length === 0 ? (
               <li className="text-gray-400">팔로잉 없음</li>
             ) : (
